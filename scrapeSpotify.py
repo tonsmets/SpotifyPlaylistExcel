@@ -4,6 +4,7 @@ import json
 import sys
 import xlwt
 import datetime
+import time
 
 with open('input.txt') as f:
 	lines = [line.rstrip('\n') for line in open('input.txt')]
@@ -40,7 +41,7 @@ for x in range(0, songCount):
 	try:
 		fullText = soup.title.get_text().replace(", a song by ", "-").replace(" on Spotify", "")
 		title = fullText.split("-")[0]
-		artist = fullText.split("-")[1]
+		artist = fullText.split("-")[-1]
 		if(len(title) > maxTitleLength):
 			maxTitleLength = len(title)
 		
@@ -65,7 +66,7 @@ deltaTime = int(deltaTime.total_seconds() * 1000)
 
 print("Scraped {0} songs in {1}ms".format(songCount, deltaTime))
 
-ws.write(songCount+2, 0, "Generated in " + str(deltaTime) + "ms")
+ws.write(songCount+2, 0, "Generated in " + str(deltaTime) + "ms at " + time.strftime("%d/%m/%Y %H:%M:%S"))
 ws.write(songCount+3, 0, "https://github.com/tonsmets/SpotifyPlaylistExcel")
 
 wb.save("playlist.xls")
