@@ -39,9 +39,9 @@ for x in range(0, songCount):
 		print("Unable to parse HTML","{0}".format(sys.exc_info()[0]))
 
 	try:
-		fullText = soup.title.get_text().replace(", a song by ", "-").replace(" on Spotify", "")
-		title = fullText.split("-")[0]
-		artist = fullText.split("-")[-1]
+		fullText = soup.title.get_text().replace(", a song by ", "#####").replace(" on Spotify", "")
+		title = fullText.split("#####")[0]
+		artist = fullText.split("#####")[-1]
 		if(len(title) > maxTitleLength):
 			maxTitleLength = len(title)
 		
