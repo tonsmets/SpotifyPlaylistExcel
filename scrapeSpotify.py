@@ -18,6 +18,7 @@ head_style = xlwt.easyxf('font: bold on');
 
 ws.write(0, 0, "Song", head_style)
 ws.write(0, 1, "Artist", head_style)
+ws.write(0, 2, "URL", head_style)
 
 maxTitleLength = 0
 maxArtistLength = 0
@@ -50,6 +51,7 @@ for x in range(0, songCount):
 		
 		ws.write(x+1, 0, title)
 		ws.write(x+1, 1, artist)
+		ws.write(x+1, 2, lines[x])
 	except:
 		print("[IGNORING] Title not found","{0}".format(sys.exc_info()[0]))
 		pass
@@ -59,6 +61,7 @@ for x in range(0, songCount):
 # Set the column width to roughly the right size
 ws.col(0).width = 256 * maxTitleLength
 ws.col(1).width = 256 * maxArtistLength
+ws.col(2).width = 256 * 53 # Magic
 
 endTime = datetime.datetime.now()
 deltaTime = endTime - startTime
